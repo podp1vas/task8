@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Магічна куля</title>
+  <style>
+    body {
+      background-color: #0b0b28;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #f8f0ff;
+    }
+
+    .inputBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      width: 260px;
+      text-align: center;
+    }
+
+    button {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: none;
+      background-color: #b666ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #923fff;
+    }
+
+    .question {
+      background-color: #f4d8ff;
+      color: #2a0033;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-size: 18px;
+      margin-bottom: 25px;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    .ball {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #6633ff, #000);
+      box-shadow: 0 0 40px #b666ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/fd/Nebula_in_a_crystal_ball.png');
+      background-size: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .ball:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    .answer {
+      font-size: 26px;
+      font-weight: bold;
+      text-shadow: 0 0 10px #fff;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const inputBox = document.createElement('div');
+    inputBox.className = 'inputBox';
+
+    const input = document.createElement('input');
+    input.placeholder = 'Введіть своє питання...';
+
+    const button = document.createElement('button');
+    button.textContent = 'Запитати кулю 🔮';
+
+    inputBox.appendChild(input);
+    inputBox.appendChild(button);
+
+    const question = document.createElement('div');
+    question.className = 'question';
+    question.textContent = 'Задайте питання, щоб отримати відповідь';
+
+    const ball = document.createElement('div');
+    ball.className = 'ball';
+
+    const answer = document.createElement('div');
+    answer.className = 'answer';
+    answer.textContent = '...';
+
+    ball.appendChild(answer);
+
+    document.body.appendChild(inputBox);
+    document.body.appendChild(question);
+    document.body.appendChild(ball);
+
+    const answers = [
+      'Так',
+      'Ні',
+      'Можливо',
+      'Запитай пізніше',
+      'Без сумнівів',
+      'Схоже на те',
+      'Не варто сподіватися',
+      'Так, але не зараз',
+      'Виглядає сумнівно',
+      'Напевно!'
+    ];
+
+    button.addEventListener('click', () => {
+      const userQuestion = input.value.trim();
+      if (userQuestion === '') {
+        question.textContent = 'Будь ласка, введіть питання!';
+        answer.textContent = '😶';
+        return;
+      }
+      question.textContent = userQuestion;
+      const random = Math.floor(Math.random() * answers.length);
+      answer.textContent = answers[random];
+      input.value = '';
+    });
+  </script>
+</body>
+</html>
